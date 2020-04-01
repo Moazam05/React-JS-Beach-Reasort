@@ -5,11 +5,11 @@ import defaultBcg from "../images/room-3.jpeg";
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../Context";
+import StyledHero from "../components/StyledHero";
 
 class SingleRoom extends Component {
   constructor(props) {
     super(props);
-    // console.log(this.props);
     this.state = {
       slug: this.props.match.params.slug,
       defaultBcg
@@ -47,13 +47,13 @@ class SingleRoom extends Component {
     } = room;
 
     return (
-      <Hero hero="roomsHero">
+      <StyledHero img={images[0] || this.state.defaultBcg}>
         <Banner title={`${name} room`}>
           <Link to="/rooms" className="btn-primary">
             back to rooms
           </Link>
         </Banner>
-      </Hero>
+      </StyledHero>
     );
   }
 }
