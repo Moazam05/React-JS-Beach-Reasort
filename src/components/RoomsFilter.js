@@ -82,7 +82,10 @@ export default function RoomsFilter({ rooms }) {
             {people}
           </select>
         </div>
-        {/* guests */}
+        {/* end of guests */}
+        {/* room price */}
+
+        {/* end of room price */}
       </form>
     </section>
   );
