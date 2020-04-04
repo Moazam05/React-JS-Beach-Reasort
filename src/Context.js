@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import items from "./data";
+import Client from "./Contentful";
 
 const RoomContext = React.createContext();
 // <RoomContext.Provider value ={}
@@ -19,13 +20,25 @@ export default class RoomProvider extends Component {
     minSize: 0,
     maxSize: 0,
     breakfast: false,
-    pets: false
+    pets: false,
   };
 
-  //   getData => formatData => Feature of getData
+  // getData
+  // getData = async () => {
+  //   try {
+  //     ;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   componentDidMount() {
-    //   this.getData
+    // this.getData();
+    // let response = await Client.getEntries({
+    //     content_type: "beachResort",
+    //     // order: "sys.createdAt"
+    //     order: "fields.price",
+    //   });
     let rooms = this.formatData(items);
     let featuredRooms = rooms.filter((room) => room.featured === true);
     let maxPrice = Math.max(...rooms.map((item) => item.pirce));
@@ -37,7 +50,7 @@ export default class RoomProvider extends Component {
       loading: false,
       price: maxPrice,
       maxPrice,
-      maxSize
+      maxSize,
     });
   }
 
@@ -63,7 +76,7 @@ export default class RoomProvider extends Component {
     const name = event.target.name;
     this.setState(
       {
-        [name]: value
+        [name]: value,
       },
       this.filterRooms
     );
@@ -78,7 +91,7 @@ export default class RoomProvider extends Component {
       minSize,
       maxSize,
       breakfast,
-      pets
+      pets,
     } = this.state;
 
     // all the rooms
@@ -118,7 +131,7 @@ export default class RoomProvider extends Component {
 
     // change state
     this.setState({
-      sortedRooms: tempRooms
+      sortedRooms: tempRooms,
     });
   };
 
@@ -128,7 +141,7 @@ export default class RoomProvider extends Component {
         value={{
           ...this.state,
           getRoom: this.getRoom,
-          handleChange: this.handleChange
+          handleChange: this.handleChange,
         }}
       >
         {this.props.children}
